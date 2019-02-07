@@ -14,9 +14,8 @@ namespace SteeringBehvaious
         SpriteBatch spriteBatch;
         Texture2D boidTex;
         Boid[] boids;
-        FlockingBehaviour fb;
-        MouseState mouseInput;
-        KeyboardState keyInput;
+        FlockingBehaviour flockingBehaviour;
+        MouseState currentMouseState, oldMouseState;
 
         public Game1()
         {
@@ -29,7 +28,6 @@ namespace SteeringBehvaious
         {
             graphics.PreferredBackBufferHeight = 1900;
             graphics.PreferredBackBufferWidth = 2500;
-            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -45,11 +43,11 @@ namespace SteeringBehvaious
             for (int i = 0; i < 100; i++)
             {
                 boids[i] = new Boid(boidTex);
-                Thread.Sleep(10);
+                //Thread.Sleep(10);         Why?
                 Console.WriteLine($"Boid number {i} created");
             }
             Console.WriteLine($"sum of all boids created = {boids.GetLength(0)}");
-            fb = new FlockingBehaviour(boids);
+            flockingBehaviour = new FlockingBehaviour(boids);
         }
 
         protected override void UnloadContent()
@@ -62,17 +60,17 @@ namespace SteeringBehvaious
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            mouseInput = Mouse.GetState();
-            keyInput = Keyboard.GetState();
+            oldMouseState = currentMouseState;
+            currentMouseState = Mouse.GetState();
 
-            if (mouseInput.LeftButton == ButtonState.Pressed)
+            if (currentMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Pressed)
             {
                 for (int i = 0; i < boids.GetLength(0); i++)
                 {
-                    boids[i].SetDirection(mouseInput);
-                    boids[i].SetAlignment(fb.GetAlignment(boids[i]));
-                    boids[i].SetCohersion(fb.GetCohesion(boids[i]));
-                    boids[i].SetSeperation(fb.GetSeperation(boids[i]));
+                    boids[i].SetDirection(currentMouseState);
+                    boids[i].SetAlignment(flockingBehaviour.GetAlignment(boids[i]));
+                    boids[i].SetCohersion(flockingBehaviour.GetCohesion(boids[i]));
+                    boids[i].SetSeperation(flockingBehaviour.GetSeperation(boids[i]));
                     boids[i].Update(gameTime);
                 }
             }

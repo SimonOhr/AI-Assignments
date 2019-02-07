@@ -18,27 +18,27 @@ namespace SteeringBehvaious
 
         public Vector2 GetAlignment(Boid myBoid)
         {
-            Vector2 v = Vector2.Zero;
+            Vector2 vector = Vector2.Zero;
             int neighborCount = 0;
 
             foreach (Boid boid in boids)
             {
                 if (boid != myBoid)
                 {
-                    if (Vector2.Distance(myBoid.GetPos(), boid.GetPos()) < 60)
+                    if (Vector2.Distance(myBoid.Pos, boid.Pos) < 60)
                     {
-                        v.X += boid.GetVelocity().X;
-                        v.Y += boid.GetVelocity().Y;
+                        vector.X += boid.GetVelocity().X;
+                        vector.Y += boid.GetVelocity().Y;
                         neighborCount++;
                     }
                 }
             }
             if (neighborCount == 0)
-                return v;
+                return vector;
 
-            v.X /= neighborCount;
-            v.Y /= neighborCount;
-            return Vector2.Normalize(v);
+            vector.X /= neighborCount;
+            vector.Y /= neighborCount;
+            return Vector2.Normalize(vector);
 
         }
 
@@ -76,9 +76,9 @@ namespace SteeringBehvaious
             for (int i = 0; i < boids.GetLength(0); i++)
             {
                 if (boids[i] != myBoid)
-                    if (Vector2.Distance(boids[i].GetPos(), myBoid.GetPos()) < 40)
+                    if (Vector2.Distance(boids[i].Pos, myBoid.Pos) < 40)
                     {
-                        resultVector += boids[i].GetPos();
+                        resultVector += boids[i].Pos;
                         neighborCount++;
                     }
             }
@@ -128,7 +128,7 @@ namespace SteeringBehvaious
             {
                 if (boids[i] != myBoid)
                 {
-                    Vector2 differenceVec = myBoid.GetPos() - boids[i].GetPos();
+                    Vector2 differenceVec = myBoid.Pos - boids[i].Pos;
                     float magnitude = differenceVec.Length();
                     if (magnitude < 100.0f)
                     {
@@ -145,24 +145,24 @@ namespace SteeringBehvaious
 
         public Vector2 Avoidance(Boid myBoid)
         {
-            Vector2 v = new Vector2(0, 0);
+            Vector2 vector = new Vector2(0, 0);
             int neighborCount = 0;
 
             foreach (Boid boid in boids)
             {
                 if (boid != myBoid)
                 {
-                    if (Vector2.Distance(myBoid.GetPos(), boid.GetPos()) < 20)
+                    if (Vector2.Distance(myBoid.Pos, boid.Pos) < 20)
                     {
-                        v.X += myBoid.GetPos().X - boid.GetPos().X;
-                        v.Y += myBoid.GetPos().Y - boid.GetPos().Y;
+                        vector.X += myBoid.Pos.X - boid.Pos.X;
+                        vector.Y += myBoid.Pos.Y - boid.Pos.Y;
                     }
                 }
             }
             if (neighborCount == 0)
-                return v;
+                return vector;
 
-            return Vector2.Normalize(v);
+            return Vector2.Normalize(vector);
         }
     }
 }

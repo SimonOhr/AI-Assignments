@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 namespace SteeringBehvaious
 {
     class Boid
-    {
+    {        
+        public Vector2 Pos { get { return pos; } }
+
+        static float speed = 2;
+
         Texture2D tex;
         Vector2 pos, velocity, direction, alignment, cohersion, seperation;
-        const float speed = 5;
         float rotation;
 
         public Boid(Texture2D texture)
@@ -22,24 +25,14 @@ namespace SteeringBehvaious
             pos.X = Game1.random.Next(0, 1200);
             pos.Y = Game1.random.Next(0, 1000);
             int rndSpeed = Game1.random.Next(1, 10);
-            //velocity = new Vector2(rndSpeed, rndSpeed);
-            velocity = new Vector2(1, 1);           
+            velocity = new Vector2(1, 1);
         }
 
         public void Update(GameTime gameTime)
         {
-            var flocking = alignment + cohersion + seperation + direction;
-            //direction += flocking;
-            //velocity += direction * (5 * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            velocity = flocking;
-            // velocity += flocking;
+            var flockingDirection = alignment + cohersion + seperation + direction;
+            velocity = flockingDirection * speed;
             pos += velocity;
-
-        }
-
-        public void Draw(SpriteBatch sb)
-        {
-            sb.Draw(tex, pos, null, Color.White, rotation, new Vector2(tex.Width / 2, tex.Height / 2), 1, SpriteEffects.None, 0);
         }
 
         public void SetDirection(MouseState mouse)
@@ -52,16 +45,6 @@ namespace SteeringBehvaious
         public void SetRotation(MouseState mouse)
         {
             rotation = (float)Math.Atan2(velocity.Y, velocity.X);
-        }
-
-        public Vector2 GetPos()
-        {
-            return pos;
-        }
-
-        public void SetPos(Vector2 newPos)
-        {
-            pos = newPos;
         }
 
         public Vector2 GetVelocity()
@@ -82,6 +65,11 @@ namespace SteeringBehvaious
         public void SetSeperation(Vector2 newSeperation)
         {
             seperation = newSeperation;
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            sb.Draw(tex, pos, null, Color.White, rotation, new Vector2(tex.Width / 2, tex.Height / 2), 1, SpriteEffects.None, 0);
         }
     }
 }
