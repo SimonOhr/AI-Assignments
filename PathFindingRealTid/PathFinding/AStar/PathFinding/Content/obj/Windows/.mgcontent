@@ -4,7 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Simon/Desktop/SkolProjekt/År 2/AI/PathFindingCont/PathFinding/AStar/PathFinding/Content/25x25Rec.png</File>
-    <File>C:/Users/Simon/Desktop/SkolProjekt/År 2/AI/PathFindingCont/PathFinding/AStar/PathFinding/Content/text.spritefont</File>
+    <File>D:/githubstuff/NEWGITDUMP/AI-Assignments/PathFindingRealTid/PathFinding/AStar/PathFinding/Content/25x25Rec.png</File>
+    <File>D:/githubstuff/NEWGITDUMP/AI-Assignments/PathFindingRealTid/PathFinding/AStar/PathFinding/Content/text.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

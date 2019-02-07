@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace PathFinding
 {
@@ -30,6 +31,7 @@ namespace PathFinding
         public bool Visited { get; set; }
         public bool Start { get; set; }
         public bool Target { get; set; }
+        public List<Node> AdjList { get; set; }
 
         public Node(Texture2D texture, Vector2 position, SpriteFont _text)
         {
@@ -43,6 +45,7 @@ namespace PathFinding
             GridCoordY = (int)pos.Y / tex.Height;
             Weight = 1;
             Distance = int.MaxValue;
+            AdjList = new List<Node>();
         }
 
         public void Draw(SpriteBatch sb)

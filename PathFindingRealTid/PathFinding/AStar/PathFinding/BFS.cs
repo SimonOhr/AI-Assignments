@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PathFinding
 {
-    internal class Dijkstra
+    internal class BFS
     {
         private Grid grid;
         private Node startNode, targetNode;
@@ -11,7 +11,7 @@ namespace PathFinding
         private Queue<Node> visited = new Queue<Node>();
         private List<Node> path = new List<Node>();
 
-        public Dijkstra(Grid _grid)
+        public BFS(Grid _grid)
         {
             grid = _grid;
         }
