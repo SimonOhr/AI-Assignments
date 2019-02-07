@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteeringBehvaious", "SteeringBehvaious\SteeringBehvaious.csproj", "{7AC6CA34-38FF-4378-A715-46F55DC6D116}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AC6CA34-38FF-4378-A715-46F55DC6D116}.Debug|x86.ActiveCfg = Debug|x86
+		{7AC6CA34-38FF-4378-A715-46F55DC6D116}.Debug|x86.Build.0 = Debug|x86
+		{7AC6CA34-38FF-4378-A715-46F55DC6D116}.Release|x86.ActiveCfg = Release|x86
+		{7AC6CA34-38FF-4378-A715-46F55DC6D116}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D91443E0-60C8-415A-9D22-D6DEB1AA6730}
+	EndGlobalSection
+EndGlobal
