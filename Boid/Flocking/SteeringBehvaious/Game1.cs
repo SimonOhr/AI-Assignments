@@ -6,9 +6,10 @@ using System;
 
 namespace SteeringBehvaious
 {
-
     public class Game1 : Game
     {
+        static public Random random = new Random();
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D boidTex;
@@ -28,6 +29,7 @@ namespace SteeringBehvaious
         {
             graphics.PreferredBackBufferHeight = 1900;
             graphics.PreferredBackBufferWidth = 2500;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -50,33 +52,32 @@ namespace SteeringBehvaious
             fb = new FlockingBehaviour(boids);
         }
 
-
         protected override void UnloadContent()
         {
 
         }
 
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             mouseInput = Mouse.GetState();
             keyInput = Keyboard.GetState();
+
             if (mouseInput.LeftButton == ButtonState.Pressed)
             {
                 for (int i = 0; i < boids.GetLength(0); i++)
                 {
-                    boids[i].GetDirection(mouseInput);
-                    boids[i].SetAlignment(fb.Alignment(boids[i]));
-                    boids[i].SetCohersion(fb.Cohersion(boids[i]));
-                    boids[i].SetSeperation(fb.Seperation(boids[i]));
-                    boids[i].update(gameTime);
+                    boids[i].SetDirection(mouseInput);
+                    boids[i].SetAlignment(fb.GetAlignment(boids[i]));
+                    boids[i].SetCohersion(fb.GetCohesion(boids[i]));
+                    boids[i].SetSeperation(fb.GetSeperation(boids[i]));
+                    boids[i].Update(gameTime);
                 }
             }
             base.Update(gameTime);
         }
-
 
         protected override void Draw(GameTime gameTime)
         {

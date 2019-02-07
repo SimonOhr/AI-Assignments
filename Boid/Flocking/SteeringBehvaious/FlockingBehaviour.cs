@@ -9,13 +9,14 @@ namespace SteeringBehvaious
 {
     class FlockingBehaviour
     {
-        Vector2 alignment, cohersion, seperation;
         Boid[] boids;
+
         public FlockingBehaviour(Boid[] boidArray)
         {
             boids = boidArray;
         }
-        public Vector2 Alignment(Boid myBoid)
+
+        public Vector2 GetAlignment(Boid myBoid)
         {
             Vector2 v = Vector2.Zero;
             int neighborCount = 0;
@@ -41,7 +42,7 @@ namespace SteeringBehvaious
 
         }
 
-        public Vector2 Cohersion(Boid myBoid)
+        public Vector2 GetCohesion(Boid myBoid)
         {
             //Vector2 cohersion = Vector2.Zero;
             //System.Console.WriteLine(myBoid.GetPos());
@@ -91,7 +92,7 @@ namespace SteeringBehvaious
             return Vector2.Normalize(resultVector);
         }
 
-        public Vector2 Seperation(Boid myBoid)
+        public Vector2 GetSeperation(Boid myBoid)
         {
             //Vector2 v = new Vector2(0, 0);
             //int neighborCount = 0;
@@ -160,7 +161,6 @@ namespace SteeringBehvaious
             }
             if (neighborCount == 0)
                 return v;
-
 
             return Vector2.Normalize(v);
         }

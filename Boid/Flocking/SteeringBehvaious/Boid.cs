@@ -13,21 +13,20 @@ namespace SteeringBehvaious
     {
         Texture2D tex;
         Vector2 pos, velocity, direction, alignment, cohersion, seperation;
-        Random rnd = new Random();
         const float speed = 5;
         float rotation;
 
         public Boid(Texture2D texture)
         {
             tex = texture;
-            pos.X = rnd.Next(0, 1200);
-            pos.Y = rnd.Next(0, 1000);
-            int rndSpeed = rnd.Next(1, 10);
-           // velocity = new Vector2(rndSpeed, rndSpeed);
+            pos.X = Game1.random.Next(0, 1200);
+            pos.Y = Game1.random.Next(0, 1000);
+            int rndSpeed = Game1.random.Next(1, 10);
+            //velocity = new Vector2(rndSpeed, rndSpeed);
             velocity = new Vector2(1, 1);           
         }
 
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             var flocking = alignment + cohersion + seperation + direction;
             //direction += flocking;
@@ -43,15 +42,14 @@ namespace SteeringBehvaious
             sb.Draw(tex, pos, null, Color.White, rotation, new Vector2(tex.Width / 2, tex.Height / 2), 1, SpriteEffects.None, 0);
         }
 
-        public void GetDirection(MouseState mouse)
+        public void SetDirection(MouseState mouse)
         {
             Vector2 temp = mouse.Position.ToVector2() - pos;
             direction = Vector2.Normalize(temp);
-            GetRotation(mouse);
-
+            SetRotation(mouse);
         }
 
-        public void GetRotation(MouseState mouse)
+        public void SetRotation(MouseState mouse)
         {
             rotation = (float)Math.Atan2(velocity.Y, velocity.X);
         }
