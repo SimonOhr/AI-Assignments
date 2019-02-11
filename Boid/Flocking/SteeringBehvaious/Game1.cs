@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
 
-namespace SteeringBehvaious
+namespace SteeringBehaviour
 {
     public class Game1 : Game
     {
@@ -43,10 +43,10 @@ namespace SteeringBehvaious
             for (int i = 0; i < 100; i++)
             {
                 boids[i] = new Boid(boidTex);
-                //Thread.Sleep(10);         Why?
                 Console.WriteLine($"Boid number {i} created");
             }
-            Console.WriteLine($"sum of all boids created = {boids.GetLength(0)}");
+            Console.WriteLine($"sum of all boids created = {boids.Length}");
+
             flockingBehaviour = new FlockingBehaviour(boids);
         }
 

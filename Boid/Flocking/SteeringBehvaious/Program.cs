@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SteeringBehvaious
+namespace SteeringBehaviour
 {
 #if WINDOWS || LINUX
     /// <summary>

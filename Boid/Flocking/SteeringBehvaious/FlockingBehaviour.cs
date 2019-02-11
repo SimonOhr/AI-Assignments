@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SteeringBehvaious
+namespace SteeringBehaviour
 {
     class FlockingBehaviour
     {
+        static int alignmentRange = 60;
+        static int cohesionRange = 40;
+        static int perceptionAngle = 270;
+
         Boid[] boids;
 
         public FlockingBehaviour(Boid[] boidArray)
@@ -16,29 +20,44 @@ namespace SteeringBehvaious
             boids = boidArray;
         }
 
+        private float AngleToNeighbour(Boid currentBoid, Boid neighbourBoid)
+        {
+            Vector2 vecToNeighbour = neighbourBoid.Pos - currentBoid.Pos;
+            vecToNeighbour.Normalize();
+
+            float dotProduct = Vector2.Dot(vecToNeighbour, currentBoid.Direction);
+            float angle = MathHelper.ToDegrees((float)Math.Acos(dotProduct));
+
+            Console.WriteLine("Angle: " + angle);
+
+            return angle;
+        }
+
         public Vector2 GetAlignment(Boid currentBoid)
         {
-            Vector2 vector = Vector2.Zero;
+            Vector2 resultVector = Vector2.Zero;
             int neighborCount = 0;
 
             for (int i = 0; i < boids.Length; i++)
             {
                 if (boids[i] != currentBoid)
                 {
-                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < 60)
+                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < alignmentRange)
                     {
-                        vector.X += boids[i].Velocity.X;
-                        vector.Y += boids[i].Velocity.Y;
-                        neighborCount++;
+                        if (AngleToNeighbour(currentBoid, boids[i]) < perceptionAngle / 2)
+                        {
+                            resultVector += boids[i].Velocity;
+                            neighborCount++;
+                        }
                     }
                 }
             }
             if (neighborCount == 0)
-                return vector;
+                return resultVector;
 
-            vector.X /= neighborCount;
-            vector.Y /= neighborCount;
-            return Vector2.Normalize(vector);
+            resultVector /= neighborCount;
+
+            return Vector2.Normalize(resultVector);
         }
 
         public Vector2 GetCohesion(Boid currentBoid)
@@ -50,19 +69,20 @@ namespace SteeringBehvaious
             {
                 if (boids[i] != currentBoid)
                 {
-                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < 40)
+                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < cohesionRange)
                     {
-                        resultVector += boids[i].Pos;
-                        neighborCount++;
+                        if (AngleToNeighbour(currentBoid, boids[i]) < perceptionAngle / 2)
+                        {
+                            resultVector += boids[i].Pos;
+                            neighborCount++;
+                        }
                     }
                 }
             }
-
             if (neighborCount == 0)
                 return resultVector;
 
             resultVector /= neighborCount;
-            Console.WriteLine(resultVector.ToString());
 
             return Vector2.Normalize(resultVector);
 
@@ -95,9 +115,9 @@ namespace SteeringBehvaious
 
         public Vector2 GetSeperation(Boid currentBoid)
         {
-            Vector2 resultVec = Vector2.Zero;
+            Vector2 resultVector = Vector2.Zero;
 
-            for (int i = 0; i < boids.GetLength(0); i++)
+            for (int i = 0; i < boids.Length; i++)
             {
                 if (boids[i] != currentBoid)
                 {
@@ -105,13 +125,16 @@ namespace SteeringBehvaious
                     float magnitude = differenceVec.Length();
                     if (magnitude < 100.0f)
                     {
-                        float weightedMagnitude = 15.0f / (magnitude * magnitude);
-                        differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
-                        resultVec += differenceVec;
+                        if (AngleToNeighbour(currentBoid, boids[i]) < perceptionAngle / 2)
+                        {
+                            float weightedMagnitude = 15.0f / (magnitude * magnitude);
+                            differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
+                            resultVector += differenceVec;
+                        }
                     }
                 }
             }
-            return resultVec;
+            return resultVector;
 
             //Vector2 v = new Vector2(0, 0);
             //int neighborCount = 0;
