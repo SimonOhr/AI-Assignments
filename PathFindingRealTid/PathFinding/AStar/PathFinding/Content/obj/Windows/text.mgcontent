@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Simon/Desktop/SkolProjekt/År 2/AI/PathFindingCont/PathFinding/AStar/PathFinding/Content/text.spritefont</SourceFile>
-  <SourceTime>2019-02-06T11:10:18+01:00</SourceTime>
-  <DestFile>C:/Users/Simon/Desktop/SkolProjekt/År 2/AI/PathFindingCont/PathFinding/AStar/PathFinding/Content/bin/Windows/text.xnb</DestFile>
-  <DestTime>2019-02-06T15:23:24.310538+01:00</DestTime>
+  <SourceFile>D:/githubstuff/NEWGITDUMP/AI-Assignments/PathFindingRealTid/PathFinding/AStar/PathFinding/Content/text.spritefont</SourceFile>
+  <SourceTime>2019-02-07T17:53:22.4570901+01:00</SourceTime>
+  <DestFile>D:/githubstuff/NEWGITDUMP/AI-Assignments/PathFindingRealTid/PathFinding/AStar/PathFinding/Content/bin/Windows/text.xnb</DestFile>
+  <DestTime>2019-02-07T20:26:30.537264+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

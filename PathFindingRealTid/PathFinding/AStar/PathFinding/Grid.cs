@@ -23,19 +23,20 @@ namespace PathFinding
         private PathFindingSelector chosenPathFindingAlgorithm;
         public bool isSetUpComplete { get; set; }
         public bool doPathFinding;
-        private AStar AStar;
-        private Dijkstra dijkstra;
+        private AStar aStar;
+        private BFS bfs;
+        private DFS dfs;
         public int gridSizeX { get; private set; }
         public int gridSizeY { get; private set; }
 
         private double timer;
-        private const int reset = 0, interval = 2000;
+        private const int reset = 0, interval = 10000;
 
         public bool IsSearching { get; set; }
 
         private Node startNode, targetNode;
 
-
+        
         public Grid(Texture2D texture, int _gridSizeX, int _gridSizeY, GameState gameState, SpriteFont _text)
         {
             tex = texture;
@@ -46,8 +47,9 @@ namespace PathFinding
             this.gameState = gameState;
             currentSetupState = SetupStateSequence.SELECTPATHALGORITHM;
             ConstructGrid();
-            AStar = new AStar(this);
-            dijkstra = new Dijkstra(this);
+            aStar = new AStar(this);
+            bfs = new BFS(this);
+            dfs = new DFS(this);
         }
 
         private void ConstructGrid()
@@ -164,14 +166,15 @@ namespace PathFinding
                 switch (chosenPathFindingAlgorithm)
                 {
                     case PathFindingSelector.ASTAR:
-                        AStar.FindPath(startNode, targetNode);
+                        aStar.FindPath(startNode, targetNode);
                         break;
                     case PathFindingSelector.DIJKRSTRAS:
-                        dijkstra.FindPath(startNode, targetNode);
+                        bfs.FindPath(startNode, targetNode);
                         break;
                     case PathFindingSelector.BREADTHFIRST:
                         break;
                     case PathFindingSelector.DEPTHFIRST:
+                        dfs.RunDFS(startNode, targetNode);
                         break;
                     default:
                         break;

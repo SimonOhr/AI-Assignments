@@ -42,7 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AStar.cs" />
-    <Compile Include="Dijkstra.cs" />
+    <Compile Include="DFS.cs" />
+    <Compile Include="BFS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="Program.cs" />
