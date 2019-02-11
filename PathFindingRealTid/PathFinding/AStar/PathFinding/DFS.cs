@@ -7,13 +7,12 @@ namespace PathFinding
     {
         private List<Node> path = new List<Node>();
         private readonly Stack<Node> closedStack = new Stack<Node>();
-        private readonly Node start;
+        private Node start;
         private Node current;
-        private readonly Node target;
+        private Node target;
         private Grid grid;
-        public DFS(Grid _grid, Node _target)
-        {           
-            target = _target;
+        public DFS(Grid _grid)
+        {
             grid = _grid;
         }
 
@@ -22,20 +21,22 @@ namespace PathFinding
 
         }
 
-        public List<Node> RunDFS(Node _current)
+        public List<Node> RunDFS(Node _current, Node _target)
         {
             if (current == null)
-            {
                 current = _current;
-            }
-          
+            if (target == null)
+                target = _target;
+            if (start == null)
+                start = current;
+
             current.Visited = true;
             current.Color = Color.Purple;
 
             if (current == target)
             {
                 path.Add(current);
-                while (current.Parent != null)
+                while (current.Parent != null && current.Parent != start)
                 {
                     current = current.Parent;
                     path.Add(current);
@@ -56,19 +57,18 @@ namespace PathFinding
                 current.AdjList = GetNeighbours(current);
                 foreach (Node item in current.AdjList)
                 {
-                    if (item.Parent == null)
+                    if (item.Parent == null && item.IsWalkable)
                     {
                         item.Parent = current;
                         item.Color = Color.Violet;
                     }
-
                 }
-                Node parent = current.Parent;
-                current = current.AdjList.Find(x => !x.Visited && x.Parent == current);  
-                if(current == null)
+                Node parent = current.Parent;              
+                current = current.AdjList.Find(x => !x.Visited && x.Parent == current);               
+                if (current == null)
                 {
                     current = parent;
-                }
+                }              
             }
             return null;
         }

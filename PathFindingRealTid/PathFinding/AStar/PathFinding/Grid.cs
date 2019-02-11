@@ -30,7 +30,7 @@ namespace PathFinding
         public int gridSizeY { get; private set; }
 
         private double timer;
-        private const int reset = 0, interval = 2000;
+        private const int reset = 0, interval = 10000;
 
         public bool IsSearching { get; set; }
 
@@ -49,7 +49,7 @@ namespace PathFinding
             ConstructGrid();
             aStar = new AStar(this);
             bfs = new BFS(this);
-            dfs = new DFS(this, targetNode);
+            dfs = new DFS(this);
         }
 
         private void ConstructGrid()
@@ -174,7 +174,7 @@ namespace PathFinding
                     case PathFindingSelector.BREADTHFIRST:
                         break;
                     case PathFindingSelector.DEPTHFIRST:
-                        dfs.RunDFS(startNode);
+                        dfs.RunDFS(startNode, targetNode);
                         break;
                     default:
                         break;
