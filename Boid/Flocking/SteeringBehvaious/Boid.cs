@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 namespace SteeringBehvaious
 {
     class Boid
-    {        
+    {
         public Vector2 Pos { get { return pos; } }
+        public Vector2 Velocity { get { return velocity; } }
 
         static float speed = 2;
 
@@ -24,7 +25,6 @@ namespace SteeringBehvaious
             tex = texture;
             pos.X = Game1.random.Next(0, 1200);
             pos.Y = Game1.random.Next(0, 1000);
-            int rndSpeed = Game1.random.Next(1, 10);
             velocity = new Vector2(1, 1);
         }
 
@@ -42,15 +42,7 @@ namespace SteeringBehvaious
             SetRotation(mouse);
         }
 
-        public void SetRotation(MouseState mouse)
-        {
-            rotation = (float)Math.Atan2(velocity.Y, velocity.X);
-        }
-
-        public Vector2 GetVelocity()
-        {
-            return velocity;
-        }
+        private void SetRotation(MouseState mouse) => rotation = (float)Math.Atan2(velocity.Y, velocity.X);
 
         public void SetAlignment(Vector2 newAlignment)
         {

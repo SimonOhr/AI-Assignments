@@ -16,19 +16,19 @@ namespace SteeringBehvaious
             boids = boidArray;
         }
 
-        public Vector2 GetAlignment(Boid myBoid)
+        public Vector2 GetAlignment(Boid currentBoid)
         {
             Vector2 vector = Vector2.Zero;
             int neighborCount = 0;
 
-            foreach (Boid boid in boids)
+            for (int i = 0; i < boids.Length; i++)
             {
-                if (boid != myBoid)
+                if (boids[i] != currentBoid)
                 {
-                    if (Vector2.Distance(myBoid.Pos, boid.Pos) < 60)
+                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < 60)
                     {
-                        vector.X += boid.GetVelocity().X;
-                        vector.Y += boid.GetVelocity().Y;
+                        vector.X += boids[i].Velocity.X;
+                        vector.Y += boids[i].Velocity.Y;
                         neighborCount++;
                     }
                 }
@@ -39,11 +39,33 @@ namespace SteeringBehvaious
             vector.X /= neighborCount;
             vector.Y /= neighborCount;
             return Vector2.Normalize(vector);
-
         }
 
-        public Vector2 GetCohesion(Boid myBoid)
+        public Vector2 GetCohesion(Boid currentBoid)
         {
+            Vector2 resultVector = Vector2.Zero;
+            int neighborCount = 0;
+
+            for (int i = 0; i < boids.Length; i++)
+            {
+                if (boids[i] != currentBoid)
+                {
+                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < 40)
+                    {
+                        resultVector += boids[i].Pos;
+                        neighborCount++;
+                    }
+                }
+            }
+
+            if (neighborCount == 0)
+                return resultVector;
+
+            resultVector /= neighborCount;
+            Console.WriteLine(resultVector.ToString());
+
+            return Vector2.Normalize(resultVector);
+
             //Vector2 cohersion = Vector2.Zero;
             //System.Console.WriteLine(myBoid.GetPos());
             //int neighborCount = 0;
@@ -69,31 +91,28 @@ namespace SteeringBehvaious
             ////cohersion = new Vector2(cohersion.X - myBoid.GetPos().X, cohersion.Y - myBoid.GetPos().Y);
             //System.Console.WriteLine(Vector2.Normalize(cohersion));
             //return Vector2.Normalize(cohersion);
+        }
 
-            Vector2 resultVector = Vector2.Zero;
-            int neighborCount = 0;
+        public Vector2 GetSeperation(Boid currentBoid)
+        {
+            Vector2 resultVec = Vector2.Zero;
 
             for (int i = 0; i < boids.GetLength(0); i++)
             {
-                if (boids[i] != myBoid)
-                    if (Vector2.Distance(boids[i].Pos, myBoid.Pos) < 40)
+                if (boids[i] != currentBoid)
+                {
+                    Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
+                    float magnitude = differenceVec.Length();
+                    if (magnitude < 100.0f)
                     {
-                        resultVector += boids[i].Pos;
-                        neighborCount++;
+                        float weightedMagnitude = 15.0f / (magnitude * magnitude);
+                        differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
+                        resultVec += differenceVec;
                     }
+                }
             }
-            if (neighborCount == 0)
-                return resultVector;
+            return resultVec;
 
-            resultVector /= neighborCount;
-            Console.WriteLine(resultVector.ToString());
-
-
-            return Vector2.Normalize(resultVector);
-        }
-
-        public Vector2 GetSeperation(Boid myBoid)
-        {
             //Vector2 v = new Vector2(0, 0);
             //int neighborCount = 0;
 
@@ -121,48 +140,28 @@ namespace SteeringBehvaious
             //temp.X += 0.5f;
             //temp.Y += 0.5f;
             //return temp;
-
-            Vector2 resultVec = Vector2.Zero;
-
-            for (int i = 0; i < boids.GetLength(0); i++)
-            {
-                if (boids[i] != myBoid)
-                {
-                    Vector2 differenceVec = myBoid.Pos - boids[i].Pos;
-                    float magnitude = differenceVec.Length();
-                    if (magnitude < 100.0f)
-                    {
-                        float weightedMagnitude = 15.0f / (magnitude * magnitude);
-                        differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
-                        resultVec += differenceVec;
-                    }
-                }
-            }
-            return resultVec;
-
-
         }
 
-        public Vector2 Avoidance(Boid myBoid)
-        {
-            Vector2 vector = new Vector2(0, 0);
-            int neighborCount = 0;
+        //public Vector2 Avoidance(Boid currentBoid)
+        //{
+        //    Vector2 vector = new Vector2(0, 0);
+        //    int neighborCount = 0;
 
-            foreach (Boid boid in boids)
-            {
-                if (boid != myBoid)
-                {
-                    if (Vector2.Distance(myBoid.Pos, boid.Pos) < 20)
-                    {
-                        vector.X += myBoid.Pos.X - boid.Pos.X;
-                        vector.Y += myBoid.Pos.Y - boid.Pos.Y;
-                    }
-                }
-            }
-            if (neighborCount == 0)
-                return vector;
+        //    foreach (Boid boid in boids)
+        //    {
+        //        if (boid != currentBoid)
+        //        {
+        //            if (Vector2.Distance(currentBoid.Pos, boid.Pos) < 20)
+        //            {
+        //                vector.X += currentBoid.Pos.X - boid.Pos.X;
+        //                vector.Y += currentBoid.Pos.Y - boid.Pos.Y;
+        //            }
+        //        }
+        //    }
+        //    if (neighborCount == 0)
+        //        return vector;
 
-            return Vector2.Normalize(vector);
-        }
+        //    return Vector2.Normalize(vector);
+        //}
     }
 }

@@ -68,9 +68,11 @@ namespace SteeringBehvaious
                 for (int i = 0; i < boids.GetLength(0); i++)
                 {
                     boids[i].SetDirection(currentMouseState);
+
                     boids[i].SetAlignment(flockingBehaviour.GetAlignment(boids[i]));
                     boids[i].SetCohersion(flockingBehaviour.GetCohesion(boids[i]));
                     boids[i].SetSeperation(flockingBehaviour.GetSeperation(boids[i]));
+
                     boids[i].Update(gameTime);
                 }
             }
@@ -81,10 +83,10 @@ namespace SteeringBehvaious
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            for (int i = 0; i < boids.GetLength(0); i++)
-            {
-                boids[i].Draw(spriteBatch);
-            }
+
+            foreach (Boid tempBoid in boids)
+                tempBoid.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
