@@ -15,7 +15,7 @@ namespace SteeringBehaviour
         public Vector2 Velocity { get; private set; }
         public Vector2 Direction { get; private set; }
 
-        static float speed = 2;
+        static readonly float speed = 2;
 
         Texture2D tex;
         Vector2 alignment, cohersion, seperation;
@@ -30,7 +30,7 @@ namespace SteeringBehaviour
 
         public void Update(GameTime gameTime)
         {
-            var flockingDirection = alignment + cohersion + seperation + Direction;
+            Vector2 flockingDirection = alignment + cohersion + seperation + Direction;
             Velocity = flockingDirection * speed;
             Pos += Velocity;
         }
@@ -49,7 +49,7 @@ namespace SteeringBehaviour
             alignment = newAlignment;
         }
 
-        public void SetCohersion(Vector2 newCohersion)
+        public void SetCohesion(Vector2 newCohersion)
         {
             cohersion = newCohersion;
         }

@@ -39,8 +39,8 @@ namespace SteeringBehaviour
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             boidTex = Content.Load<Texture2D>("boidTex");
-            boids = new Boid[100];
-            for (int i = 0; i < 100; i++)
+            boids = new Boid[50];
+            for (int i = 0; i < boids.Length; i++)
             {
                 boids[i] = new Boid(boidTex);
                 Console.WriteLine($"Boid number {i} created");
@@ -63,14 +63,14 @@ namespace SteeringBehaviour
             oldMouseState = currentMouseState;
             currentMouseState = Mouse.GetState();
 
-            if (currentMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Pressed)
+            if (currentMouseState.LeftButton == ButtonState.Pressed /*&& oldMouseState.LeftButton == ButtonState.Pressed*/)
             {
-                for (int i = 0; i < boids.GetLength(0); i++)
+                for (int i = 0; i < boids.Length; i++)
                 {
                     boids[i].SetDirection(currentMouseState);
 
                     boids[i].SetAlignment(flockingBehaviour.GetAlignment(boids[i]));
-                    boids[i].SetCohersion(flockingBehaviour.GetCohesion(boids[i]));
+                    boids[i].SetCohesion(flockingBehaviour.GetCohesion(boids[i]));
                     boids[i].SetSeperation(flockingBehaviour.GetSeperation(boids[i]));
 
                     boids[i].Update(gameTime);

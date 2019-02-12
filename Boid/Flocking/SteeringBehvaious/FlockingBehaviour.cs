@@ -9,9 +9,9 @@ namespace SteeringBehaviour
 {
     class FlockingBehaviour
     {
-        static int alignmentRange = 60;
-        static int cohesionRange = 40;
-        static int perceptionAngle = 270;
+        static readonly int alignmentRange = 60;
+        static readonly int cohesionRange = 40;
+        static readonly int perceptionAngle = 270;
 
         Boid[] boids;
 
@@ -31,6 +31,11 @@ namespace SteeringBehaviour
             Console.WriteLine("Angle: " + angle);
 
             return angle;
+        }
+
+        public void Update(Boid currentBoid)
+        {
+
         }
 
         public Vector2 GetAlignment(Boid currentBoid)
