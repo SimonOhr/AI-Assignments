@@ -9,6 +9,7 @@ namespace SteeringBehaviour
     public class Game1 : Game
     {
         static public Random random = new Random();
+        static public Rectangle Bounds { get { return new Rectangle(0, 0, 1720, 880); } }
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -26,8 +27,8 @@ namespace SteeringBehaviour
 
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferHeight = 1900;
-            graphics.PreferredBackBufferWidth = 2500;
+            graphics.PreferredBackBufferHeight = Bounds.Height;
+            graphics.PreferredBackBufferWidth = Bounds.Width;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -39,7 +40,7 @@ namespace SteeringBehaviour
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             boidTex = Content.Load<Texture2D>("boidTex");
-            boids = new Boid[50];
+            boids = new Boid[20];
             for (int i = 0; i < boids.Length; i++)
             {
                 boids[i] = new Boid(boidTex);
@@ -72,6 +73,7 @@ namespace SteeringBehaviour
                     boids[i].SetAlignment(flockingBehaviour.GetAlignment(boids[i]));
                     boids[i].SetCohesion(flockingBehaviour.GetCohesion(boids[i]));
                     boids[i].SetSeperation(flockingBehaviour.GetSeperation(boids[i]));
+                    //flockingBehaviour.Update(boids[i]);
 
                     boids[i].Update(gameTime);
                 }

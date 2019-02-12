@@ -28,14 +28,80 @@ namespace SteeringBehaviour
             float dotProduct = Vector2.Dot(vecToNeighbour, currentBoid.Direction);
             float angle = MathHelper.ToDegrees((float)Math.Acos(dotProduct));
 
-            Console.WriteLine("Angle: " + angle);
+            //Console.WriteLine("Angle: " + angle);
 
             return angle;
         }
 
         public void Update(Boid currentBoid)
         {
+            Vector2 alignmentVector = Vector2.Zero;
+            int alignmentNeighbors = 0;
 
+            Vector2 cohesionVector = Vector2.Zero;
+            int cohesionNeighbors = 0;
+
+            Vector2 separationVector = Vector2.Zero;
+
+            for (int i = 0; i < boids.Length; i++)
+            {
+                if (boids[i] != currentBoid)
+                {
+                    float angle = float.MaxValue;
+                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < alignmentRange)
+                    {
+                        angle = AngleToNeighbour(currentBoid, boids[i]);
+                        if (angle < perceptionAngle / 2)
+                        {
+                            alignmentVector += boids[i].Velocity;
+                            alignmentNeighbors++;
+
+                            if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < cohesionRange)
+                            {
+                                cohesionVector += boids[i].Pos;
+                                cohesionNeighbors++;
+                            }
+                        }
+                    }
+                    Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
+                    float magnitude = differenceVec.Length();
+                    if (magnitude < 100.0f)
+                    {
+                        if (angle == float.MaxValue) AngleToNeighbour(currentBoid, boids[i]);
+                        if (angle < perceptionAngle / 2)
+                        {
+                            float weightedMagnitude = 15.0f / (magnitude * magnitude);
+                            differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
+                            separationVector += differenceVec;
+                        }
+                    }
+                }
+            }
+
+            if (alignmentNeighbors == 0)
+            {
+                currentBoid.SetAlignment(alignmentVector);
+            }
+            else
+            {
+                alignmentVector /= alignmentNeighbors;
+                alignmentVector.Normalize();
+                currentBoid.SetAlignment(alignmentVector);
+            }
+
+            if (cohesionNeighbors == 0)
+            {
+                currentBoid.SetCohesion(cohesionVector);
+            }
+            else
+            {
+                cohesionVector /= cohesionNeighbors;
+                cohesionVector.Normalize();
+                currentBoid.SetCohesion(cohesionVector);
+            }
+
+            separationVector.Normalize();
+            currentBoid.SetSeperation(separationVector);
         }
 
         public Vector2 GetAlignment(Boid currentBoid)
@@ -121,6 +187,7 @@ namespace SteeringBehaviour
         public Vector2 GetSeperation(Boid currentBoid)
         {
             Vector2 resultVector = Vector2.Zero;
+            int neighborCount = 0;
 
             for (int i = 0; i < boids.Length; i++)
             {
@@ -128,18 +195,25 @@ namespace SteeringBehaviour
                 {
                     Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
                     float magnitude = differenceVec.Length();
-                    if (magnitude < 100.0f)
+                    if (magnitude < 30.0f)
                     {
                         if (AngleToNeighbour(currentBoid, boids[i]) < perceptionAngle / 2)
                         {
                             float weightedMagnitude = 15.0f / (magnitude * magnitude);
                             differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
                             resultVector += differenceVec;
+                            neighborCount++;
                         }
                     }
                 }
             }
-            return resultVector;
+
+            if (neighborCount == 0)
+                return resultVector;
+
+            resultVector /= neighborCount;
+
+            return Vector2.Normalize(resultVector);
 
             //Vector2 v = new Vector2(0, 0);
             //int neighborCount = 0;

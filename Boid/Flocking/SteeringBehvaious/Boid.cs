@@ -18,19 +18,20 @@ namespace SteeringBehaviour
         static readonly float speed = 2;
 
         Texture2D tex;
-        Vector2 alignment, cohersion, seperation;
+        Vector2 alignment, cohesion, seperation;
         float rotation;
 
         public Boid(Texture2D texture)
         {
             tex = texture;
-            Pos = new Vector2(Game1.random.Next(0, 1200), Game1.random.Next(0, 1200));
+            Pos = new Vector2(Game1.random.Next(0, Game1.Bounds.Width), Game1.random.Next(0, Game1.Bounds.Height));
             Velocity = new Vector2(1, 1);
         }
 
         public void Update(GameTime gameTime)
         {
-            Vector2 flockingDirection = alignment + cohersion + seperation + Direction;
+            Vector2 flockingDirection = alignment + cohesion + seperation + Direction;
+            flockingDirection.Normalize();
             Velocity = flockingDirection * speed;
             Pos += Velocity;
         }
@@ -39,19 +40,19 @@ namespace SteeringBehaviour
         {
             Vector2 temp = mouse.Position.ToVector2() - Pos;
             Direction = Vector2.Normalize(temp);
-            SetRotation(mouse);
+            SetRotation();
         }
 
-        private void SetRotation(MouseState mouse) => rotation = (float)Math.Atan2(Velocity.Y, Velocity.X);
+        private void SetRotation() => rotation = (float)Math.Atan2(Velocity.Y, Velocity.X);
 
         public void SetAlignment(Vector2 newAlignment)
         {
             alignment = newAlignment;
         }
 
-        public void SetCohesion(Vector2 newCohersion)
+        public void SetCohesion(Vector2 newCohesion)
         {
-            cohersion = newCohersion;
+            cohesion = newCohesion;
         }
 
         public void SetSeperation(Vector2 newSeperation)
