@@ -7,20 +7,28 @@ using System.Threading.Tasks;
 
 namespace SteeringBehaviour
 {
-    class FlockingBehaviour
+    static class FlockingBehaviour
     {
+        public static readonly int separationRange = 30;
+        public static readonly int neighbourRange = 100;
+
         static readonly int alignmentRange = 60;
         static readonly int cohesionRange = 40;
         static readonly int perceptionAngle = 270;
 
-        Boid[] boids;
+        static Boid[] boids;
 
-        public FlockingBehaviour(Boid[] boidArray)
+        //public FlockingBehaviour(ref Boid[] boidArray)
+        //{
+        //    boids = boidArray;
+        //}
+
+        public static void Initialize(ref Boid[] boids)
         {
-            boids = boidArray;
+            FlockingBehaviour.boids = boids;
         }
 
-        private float AngleToNeighbour(Boid currentBoid, Boid neighbourBoid)
+        private static float AngleToNeighbour(Boid currentBoid, Boid neighbourBoid)
         {
             Vector2 vecToNeighbour = neighbourBoid.Pos - currentBoid.Pos;
             vecToNeighbour.Normalize();
@@ -28,83 +36,10 @@ namespace SteeringBehaviour
             float dotProduct = Vector2.Dot(vecToNeighbour, currentBoid.Direction);
             float angle = MathHelper.ToDegrees((float)Math.Acos(dotProduct));
 
-            //Console.WriteLine("Angle: " + angle);
-
             return angle;
         }
 
-        public void Update(Boid currentBoid)
-        {
-            Vector2 alignmentVector = Vector2.Zero;
-            int alignmentNeighbors = 0;
-
-            Vector2 cohesionVector = Vector2.Zero;
-            int cohesionNeighbors = 0;
-
-            Vector2 separationVector = Vector2.Zero;
-
-            for (int i = 0; i < boids.Length; i++)
-            {
-                if (boids[i] != currentBoid)
-                {
-                    float angle = float.MaxValue;
-                    if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < alignmentRange)
-                    {
-                        angle = AngleToNeighbour(currentBoid, boids[i]);
-                        if (angle < perceptionAngle / 2)
-                        {
-                            alignmentVector += boids[i].Velocity;
-                            alignmentNeighbors++;
-
-                            if (Vector2.Distance(boids[i].Pos, currentBoid.Pos) < cohesionRange)
-                            {
-                                cohesionVector += boids[i].Pos;
-                                cohesionNeighbors++;
-                            }
-                        }
-                    }
-                    Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
-                    float magnitude = differenceVec.Length();
-                    if (magnitude < 100.0f)
-                    {
-                        if (angle == float.MaxValue) AngleToNeighbour(currentBoid, boids[i]);
-                        if (angle < perceptionAngle / 2)
-                        {
-                            float weightedMagnitude = 15.0f / (magnitude * magnitude);
-                            differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
-                            separationVector += differenceVec;
-                        }
-                    }
-                }
-            }
-
-            if (alignmentNeighbors == 0)
-            {
-                currentBoid.SetAlignment(alignmentVector);
-            }
-            else
-            {
-                alignmentVector /= alignmentNeighbors;
-                alignmentVector.Normalize();
-                currentBoid.SetAlignment(alignmentVector);
-            }
-
-            if (cohesionNeighbors == 0)
-            {
-                currentBoid.SetCohesion(cohesionVector);
-            }
-            else
-            {
-                cohesionVector /= cohesionNeighbors;
-                cohesionVector.Normalize();
-                currentBoid.SetCohesion(cohesionVector);
-            }
-
-            separationVector.Normalize();
-            currentBoid.SetSeperation(separationVector);
-        }
-
-        public Vector2 GetAlignment(Boid currentBoid)
+        public static Vector2 GetAlignment(Boid currentBoid)
         {
             Vector2 resultVector = Vector2.Zero;
             int neighborCount = 0;
@@ -131,7 +66,7 @@ namespace SteeringBehaviour
             return Vector2.Normalize(resultVector);
         }
 
-        public Vector2 GetCohesion(Boid currentBoid)
+        public static Vector2 GetCohesion(Boid currentBoid)
         {
             Vector2 resultVector = Vector2.Zero;
             int neighborCount = 0;
@@ -156,35 +91,9 @@ namespace SteeringBehaviour
             resultVector /= neighborCount;
 
             return Vector2.Normalize(resultVector);
-
-            //Vector2 cohersion = Vector2.Zero;
-            //System.Console.WriteLine(myBoid.GetPos());
-            //int neighborCount = 0;
-
-            //foreach (Boid boid in boids)
-            //{
-            //    if (boid != myBoid)
-            //    {
-            //        if (Vector2.Distance(boid.GetPos(), myBoid.GetPos()) < 50)
-            //        {
-            //            cohersion.X += boid.GetPos().X - myBoid.GetPos().X;
-            //            cohersion.Y += boid.GetPos().Y - myBoid.GetPos().Y;
-            //            System.Console.WriteLine(cohersion);
-            //            neighborCount++;
-            //        }
-            //    }
-            //}
-            //if (neighborCount == 0)
-            //    return cohersion;
-            //System.Console.WriteLine(cohersion);
-            //cohersion.X /= neighborCount;
-            //cohersion.Y /= neighborCount;
-            ////cohersion = new Vector2(cohersion.X - myBoid.GetPos().X, cohersion.Y - myBoid.GetPos().Y);
-            //System.Console.WriteLine(Vector2.Normalize(cohersion));
-            //return Vector2.Normalize(cohersion);
         }
 
-        public Vector2 GetSeperation(Boid currentBoid)
+        public static Vector2 GetSeperation(Boid currentBoid)
         {
             Vector2 resultVector = Vector2.Zero;
             int neighborCount = 0;
@@ -214,56 +123,78 @@ namespace SteeringBehaviour
             resultVector /= neighborCount;
 
             return Vector2.Normalize(resultVector);
-
-            //Vector2 v = new Vector2(0, 0);
-            //int neighborCount = 0;
-
-            //foreach (Boid boid in boids)
-            //{
-            //    if (boid != myBoid)
-            //    {
-            //        if (Vector2.Distance(myBoid.GetPos(), boid.GetPos()) < 20)
-            //        {
-            //            v.X += myBoid.GetPos().X - boid.GetPos().X + 1f;
-            //            v.Y += myBoid.GetPos().Y - boid.GetPos().Y + 1f;
-            //            neighborCount++;
-            //        }
-            //    }
-            //}
-            //if (neighborCount == 0)
-            //    return v;
-
-            ////v.X /= neighborCount;
-            //// v.Y /= neighborCount;
-            ////v.X *= -1;
-            ////v.Y *= -1;
-            //// v = new Vector2(v.X - myBoid.GetPos().X, v.Y - myBoid.GetPos().Y);
-            //var temp = Vector2.Normalize(v);
-            //temp.X += 0.5f;
-            //temp.Y += 0.5f;
-            //return temp;
         }
 
-        //public Vector2 Avoidance(Boid currentBoid)
+        //public static Vector2 Rule1(Boid currentBoid)
         //{
-        //    Vector2 vector = new Vector2(0, 0);
-        //    int neighborCount = 0;
+        //    Vector2 pcj = Vector2.Zero;
+        //    int neighbours = 0;
 
-        //    foreach (Boid boid in boids)
+        //    for (int i = 0; i < boids.Length; i++)
         //    {
-        //        if (boid != currentBoid)
+        //        if (currentBoid != boids[i])
         //        {
-        //            if (Vector2.Distance(currentBoid.Pos, boid.Pos) < 20)
+        //            float distance = Vector2.Distance(currentBoid.Pos, boids[i].Pos);
+        //            if (distance < neighbourRange)
         //            {
-        //                vector.X += currentBoid.Pos.X - boid.Pos.X;
-        //                vector.Y += currentBoid.Pos.Y - boid.Pos.Y;
+        //                if (AngleToNeighbour(currentBoid, boids[i]) > perceptionAngle / 2)
+        //                {
+        //                    pcj += boids[i].Pos;
+        //                    neighbours++;
+        //                }
+
         //            }
         //        }
         //    }
-        //    if (neighborCount == 0)
-        //        return vector;
 
-        //    return Vector2.Normalize(vector);
+        //    if (neighbours == 0) return pcj;
+
+        //    pcj = pcj / neighbours;
+        //    return (pcj - currentBoid.Pos) / 100;
+        //}
+
+        //public static Vector2 Rule2(Boid currentBoid)
+        //{
+        //    Vector2 c = Vector2.Zero;
+
+        //    for (int i = 0; i < boids.Length; i++)
+        //    {
+        //        if (currentBoid != boids[i])
+        //        {
+        //            if ((boids[i].Pos - currentBoid.Pos).Length() < separationRange)
+        //            {
+        //                if (AngleToNeighbour(currentBoid, boids[i]) > perceptionAngle / 2)
+        //                {
+        //                    c -= (boids[i].Pos - currentBoid.Pos);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return c;
+        //}
+
+        //public static Vector2 Rule3(Boid currentBoid)
+        //{
+        //    Vector2 pvj = Vector2.Zero;
+        //    int neighbours = 0;
+
+        //    for (int i = 0; i < boids.Length; i++)
+        //    {
+        //        if (currentBoid != boids[i])
+        //        {
+        //            if (AngleToNeighbour(currentBoid, boids[i]) > perceptionAngle / 2)
+        //            {
+        //                pvj += boids[i].Velocity;
+        //                neighbours++;
+        //            }
+        //        }
+        //    }
+
+        //    if (neighbours == 0) return pvj;
+
+        //    pvj = pvj / neighbours;
+        //    return (pvj - currentBoid.Velocity) / 8;
         //}
     }
 }

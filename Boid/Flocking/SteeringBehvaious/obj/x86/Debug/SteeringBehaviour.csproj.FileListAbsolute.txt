@@ -24,3 +24,4 @@ C:\Users\vikto\OneDrive\År3\Spelinriktad AI\AI-Assignments\Boid\Flocking\Steeri
 C:\Users\vikto\OneDrive\År3\Spelinriktad AI\AI-Assignments\Boid\Flocking\SteeringBehvaious\obj\x86\Debug\SteeringBehaviour.csproj.CopyComplete
 C:\Users\vikto\OneDrive\År3\Spelinriktad AI\AI-Assignments\Boid\Flocking\SteeringBehvaious\obj\x86\Debug\SteeringBehvaious.exe
 C:\Users\vikto\OneDrive\År3\Spelinriktad AI\AI-Assignments\Boid\Flocking\SteeringBehvaious\obj\x86\Debug\SteeringBehvaious.pdb
+C:\Users\vikto\OneDrive\År3\Spelinriktad AI\AI-Assignments\Boid\Flocking\SteeringBehvaious\bin\Windows\x86\Debug\Content\ball.xnb

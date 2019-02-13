@@ -8,14 +8,16 @@ namespace SteeringBehaviour
 {
     public class Game1 : Game
     {
+        static public Texture2D DebugTex { get; set; }
+
         static public Random random = new Random();
         static public Rectangle Bounds { get { return new Rectangle(0, 0, 1720, 880); } }
+
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D boidTex;
         Boid[] boids;
-        FlockingBehaviour flockingBehaviour;
         MouseState currentMouseState, oldMouseState;
 
         public Game1()
@@ -35,12 +37,14 @@ namespace SteeringBehaviour
             base.Initialize();
         }
 
-
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            DebugTex = Content.Load<Texture2D>("ball");
+
             boidTex = Content.Load<Texture2D>("boidTex");
-            boids = new Boid[20];
+            boids = new Boid[100];
             for (int i = 0; i < boids.Length; i++)
             {
                 boids[i] = new Boid(boidTex);
@@ -48,7 +52,7 @@ namespace SteeringBehaviour
             }
             Console.WriteLine($"sum of all boids created = {boids.Length}");
 
-            flockingBehaviour = new FlockingBehaviour(boids);
+            FlockingBehaviour.Initialize(ref boids);
         }
 
         protected override void UnloadContent()
@@ -66,16 +70,27 @@ namespace SteeringBehaviour
 
             if (currentMouseState.LeftButton == ButtonState.Pressed /*&& oldMouseState.LeftButton == ButtonState.Pressed*/)
             {
+                //    foreach (Boid tempBoid in boids)
+                //    {
+                //        tempBoid.SetDirection(currentMouseState);
+
+                //        tempBoid.SetCohesion(FlockingBehaviour.Rule1(tempBoid));
+                //        tempBoid.SetSeperation(FlockingBehaviour.Rule2(tempBoid));
+                //        tempBoid.SetAlignment(FlockingBehaviour.Rule3(tempBoid));
+
+                //        tempBoid.Update();
+                //    }
+
                 for (int i = 0; i < boids.Length; i++)
                 {
                     boids[i].SetDirection(currentMouseState);
 
-                    boids[i].SetAlignment(flockingBehaviour.GetAlignment(boids[i]));
-                    boids[i].SetCohesion(flockingBehaviour.GetCohesion(boids[i]));
-                    boids[i].SetSeperation(flockingBehaviour.GetSeperation(boids[i]));
+                    boids[i].SetAlignment(FlockingBehaviour.GetAlignment(boids[i]));
+                    boids[i].SetCohesion(FlockingBehaviour.GetCohesion(boids[i]));
+                    boids[i].SetSeperation(FlockingBehaviour.GetSeperation(boids[i]));
                     //flockingBehaviour.Update(boids[i]);
 
-                    boids[i].Update(gameTime);
+                    boids[i].Update();
                 }
             }
             base.Update(gameTime);
@@ -85,6 +100,9 @@ namespace SteeringBehaviour
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+
+            //foreach (Boid tempBoid in boids)
+            //    tempBoid.DebugDraw(spriteBatch);
 
             foreach (Boid tempBoid in boids)
                 tempBoid.Draw(spriteBatch);
