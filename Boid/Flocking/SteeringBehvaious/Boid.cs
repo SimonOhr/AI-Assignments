@@ -15,7 +15,7 @@ namespace SteeringBehaviour
         public Vector2 Velocity { get; private set; }
         public Vector2 Direction { get; private set; }
 
-        static readonly float speed = 0.7f;
+        static readonly float speed = 0.8f;
 
         Texture2D tex;
         Vector2 alignment, cohesion, seperation;
@@ -62,11 +62,11 @@ namespace SteeringBehaviour
             spriteBatch.Draw(tex, Pos, null, Color.White, rotation, new Vector2(tex.Width / 2, tex.Height / 2), 1, SpriteEffects.None, 0);
         }
 
-        public void DebugDraw(SpriteBatch spriteBatch)
-        {
-            float rotation = (float)Math.Atan2(Velocity.Y, Velocity.X);
-            spriteBatch.Draw(Game1.DebugTex, new Rectangle((int)Pos.X, (int)Pos.Y, FlockingBehaviour.neighbourRange, FlockingBehaviour.neighbourRange),
-            null, Color.LightGray, rotation, new Vector2(FlockingBehaviour.neighbourRange / 4, FlockingBehaviour.neighbourRange / 4), SpriteEffects.None, 0);
-        }
+        //public void DebugDraw(SpriteBatch spriteBatch)
+        //{
+        //    float rotation = (float)Math.Atan2(Velocity.Y, Velocity.X);
+        //    spriteBatch.Draw(Game1.DebugTex, new Rectangle((int)Pos.X, (int)Pos.Y, FlockingBehaviour.neighbourRange, FlockingBehaviour.neighbourRange),
+        //    null, Color.LightGray, rotation, new Vector2(FlockingBehaviour.neighbourRange / 4, FlockingBehaviour.neighbourRange / 4), SpriteEffects.None, 0);
+        //}
     }
 }

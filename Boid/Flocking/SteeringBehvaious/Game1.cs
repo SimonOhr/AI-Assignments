@@ -8,7 +8,7 @@ namespace SteeringBehaviour
 {
     public class Game1 : Game
     {
-        static public Texture2D DebugTex { get; set; }
+        readonly bool halvedFrameRate = false;
 
         static public Random random = new Random();
         static public Rectangle Bounds { get { return new Rectangle(0, 0, 1720, 880); } }
@@ -19,6 +19,8 @@ namespace SteeringBehaviour
         Texture2D boidTex;
         Boid[] boids;
         MouseState currentMouseState, oldMouseState;
+
+        int updatingHalf;
 
         public Game1()
         {
@@ -41,10 +43,8 @@ namespace SteeringBehaviour
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            DebugTex = Content.Load<Texture2D>("ball");
-
             boidTex = Content.Load<Texture2D>("boidTex");
-            boids = new Boid[100];
+            boids = new Boid[halvedFrameRate ? 200 : 150];
             for (int i = 0; i < boids.Length; i++)
             {
                 boids[i] = new Boid(boidTex);
@@ -53,6 +53,8 @@ namespace SteeringBehaviour
             Console.WriteLine($"sum of all boids created = {boids.Length}");
 
             FlockingBehaviour.Initialize(ref boids);
+
+            updatingHalf = halvedFrameRate ? 0 : 2;
         }
 
         protected override void UnloadContent()
@@ -70,25 +72,30 @@ namespace SteeringBehaviour
 
             if (currentMouseState.LeftButton == ButtonState.Pressed /*&& oldMouseState.LeftButton == ButtonState.Pressed*/)
             {
-                //    foreach (Boid tempBoid in boids)
-                //    {
-                //        tempBoid.SetDirection(currentMouseState);
+                int start = 0, stop = 0;
+                switch (updatingHalf)
+                {
+                    case 0:
+                        start = 0;
+                        stop = boids.Length / 2;
+                        updatingHalf = 1;
+                        break;
+                    case 1:
+                        start = boids.Length / 2;
+                        stop = boids.Length;
+                        updatingHalf = 0;
+                        break;
+                    case 2:
+                        start = 0;
+                        stop = boids.Length;
+                        break;
+                }
 
-                //        tempBoid.SetCohesion(FlockingBehaviour.Rule1(tempBoid));
-                //        tempBoid.SetSeperation(FlockingBehaviour.Rule2(tempBoid));
-                //        tempBoid.SetAlignment(FlockingBehaviour.Rule3(tempBoid));
-
-                //        tempBoid.Update();
-                //    }
-
-                for (int i = 0; i < boids.Length; i++)
+                for (int i = start; i < stop; i++)
                 {
                     boids[i].SetDirection(currentMouseState);
 
-                    boids[i].SetAlignment(FlockingBehaviour.GetAlignment(boids[i]));
-                    boids[i].SetCohesion(FlockingBehaviour.GetCohesion(boids[i]));
-                    boids[i].SetSeperation(FlockingBehaviour.GetSeperation(boids[i]));
-                    //flockingBehaviour.Update(boids[i]);
+                    FlockingBehaviour.Update(boids[i]);
 
                     boids[i].Update();
                 }

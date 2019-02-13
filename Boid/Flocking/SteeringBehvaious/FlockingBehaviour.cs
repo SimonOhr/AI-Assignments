@@ -9,19 +9,16 @@ namespace SteeringBehaviour
 {
     static class FlockingBehaviour
     {
-        public static readonly int separationRange = 30;
-        public static readonly int neighbourRange = 100;
-
         static readonly int alignmentRange = 60;
         static readonly int cohesionRange = 40;
+        static readonly int separationRange = 30;
+        static readonly int separationWeight = 15;
+
         static readonly int perceptionAngle = 270;
 
-        static Boid[] boids;
+        //public static readonly int neighbourRange = 100;
 
-        //public FlockingBehaviour(ref Boid[] boidArray)
-        //{
-        //    boids = boidArray;
-        //}
+        static Boid[] boids;
 
         public static void Initialize(ref Boid[] boids)
         {
@@ -37,6 +34,88 @@ namespace SteeringBehaviour
             float angle = MathHelper.ToDegrees((float)Math.Acos(dotProduct));
 
             return angle;
+        }
+
+        public static void Update(Boid currentBoid)
+        {
+            Vector2 alignmentVector = Vector2.Zero;
+            int alignmentNeighbors = 0;
+
+            Vector2 cohesionVector = Vector2.Zero;
+            int cohesionNeighbors = 0;
+
+            Vector2 separationVector = Vector2.Zero;
+            int separationNeighbors = 0;
+
+            for (int i = 0; i < boids.Length; i++)
+            {
+                if (boids[i] != currentBoid)
+                {
+                    Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
+                    float distance = differenceVec.Length();
+                    float angle = float.MaxValue;
+
+                    if (distance < alignmentRange)
+                    {
+                        if (angle == float.MaxValue) angle = AngleToNeighbour(currentBoid, boids[i]);
+                        if (angle < perceptionAngle / 2)
+                        {
+                            alignmentVector += boids[i].Velocity;
+                            alignmentNeighbors++;
+                        }
+                    }
+                    if (distance < cohesionRange)
+                    {
+                        if (angle == float.MaxValue) angle = AngleToNeighbour(currentBoid, boids[i]);
+                        if (angle < perceptionAngle / 2)
+                        {
+                            cohesionVector += boids[i].Pos;
+                            cohesionNeighbors++;
+                        }
+                    }
+                    if (distance < separationRange)
+                    {
+                        if (angle == float.MaxValue) angle = AngleToNeighbour(currentBoid, boids[i]);
+                        if (angle < perceptionAngle / 2)
+                        {
+                            float weightedMagnitude = separationWeight / (distance * distance);
+                            differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
+                            separationVector += differenceVec;
+                            separationNeighbors++;
+                        }
+                    }
+                }
+            }
+
+            if (alignmentNeighbors == 0)
+            {
+                currentBoid.SetAlignment(alignmentVector);
+            }
+            else
+            {
+                alignmentVector /= alignmentNeighbors;
+                currentBoid.SetAlignment(Vector2.Normalize(alignmentVector));
+            }
+
+            if (cohesionNeighbors == 0)
+            {
+                currentBoid.SetCohesion(cohesionVector);
+            }
+            else
+            {
+                cohesionVector /= cohesionNeighbors;
+                currentBoid.SetCohesion(Vector2.Normalize(cohesionVector));
+            }
+
+            if (separationNeighbors == 0)
+            {
+                currentBoid.SetSeperation(separationVector);
+            }
+            else
+            {
+                separationVector /= separationNeighbors;
+                currentBoid.SetSeperation(Vector2.Normalize(separationVector));
+            }
         }
 
         public static Vector2 GetAlignment(Boid currentBoid)
@@ -103,12 +182,12 @@ namespace SteeringBehaviour
                 if (boids[i] != currentBoid)
                 {
                     Vector2 differenceVec = currentBoid.Pos - boids[i].Pos;
-                    float magnitude = differenceVec.Length();
-                    if (magnitude < 30.0f)
+                    float distance = differenceVec.Length();
+                    if (distance < separationRange)
                     {
                         if (AngleToNeighbour(currentBoid, boids[i]) < perceptionAngle / 2)
                         {
-                            float weightedMagnitude = 15.0f / (magnitude * magnitude);
+                            float weightedMagnitude = 15.0f / (distance * distance);
                             differenceVec = Vector2.Multiply(differenceVec, new Vector2(weightedMagnitude, weightedMagnitude));
                             resultVector += differenceVec;
                             neighborCount++;
