@@ -8,11 +8,10 @@ namespace SteeringBehaviour
 {
     public class Game1 : Game
     {
-        readonly bool halvedFrameRate = false;
+        readonly bool halvedFrameRate = true;
 
         static public Random random = new Random();
         static public Rectangle Bounds { get { return new Rectangle(0, 0, 1720, 880); } }
-
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -27,7 +26,6 @@ namespace SteeringBehaviour
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
 
         protected override void Initialize()
         {

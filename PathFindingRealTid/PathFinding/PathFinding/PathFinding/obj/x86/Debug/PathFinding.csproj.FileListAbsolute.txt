@@ -1,0 +1,139 @@
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\25x25Rec.xnb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.exe
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.pdb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CoreCompileInputs.cache
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CopyComplete
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.exe
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.pdb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\text.xnb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csprojAssemblyReference.cache
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\25x25Rec.xnb
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\text.xnb
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.exe
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.pdb
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csprojAssemblyReference.cache
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CoreCompileInputs.cache
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CopyComplete
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.exe
+C:\Users\Spellabb2018\Desktop\PathFinding\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.pdb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\25x25Rec.xnb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\text.xnb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.exe
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.pdb
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csprojAssemblyReference.cache
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CoreCompileInputs.cache
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CopyComplete
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.exe
+C:\Users\Simon\Desktop\SkolProjekt\År 2\AI\PathFindingCont\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.pdb
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csprojAssemblyReference.cache
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CoreCompileInputs.cache
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.exe
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.pdb
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\25x25Rec.xnb
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\Content\text.xnb
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.exe
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\PathFinding.pdb
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+D:\githubstuff\NEWGITDUMP\AI-Assignments\PathFindingRealTid\PathFinding\AStar\PathFinding\obj\x86\Debug\PathFinding.csproj.CopyComplete
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\Content\25x25Rec.xnb
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\Content\text.xnb
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFinding.exe
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFinding.pdb
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\MonoGame.Framework.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.XInput.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\obj\x86\Debug\PathFinding.csprojAssemblyReference.cache
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\obj\x86\Debug\PathFinding.csproj.CoreCompileInputs.cache
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\obj\x86\Debug\PathFinding.csproj.CopyComplete
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\obj\x86\Debug\PathFinding.exe
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\obj\x86\Debug\PathFinding.pdb
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFindingALgorithmsUI.exe
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFindingALgorithmsUI.pdb
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFindingALgorithmsUI.exe.config
+E:\AI-Assignments\PathFindingRealTid\PathFinding\PathFinding\PathFinding\bin\Windows\x86\Debug\PathFinding.exe.config
