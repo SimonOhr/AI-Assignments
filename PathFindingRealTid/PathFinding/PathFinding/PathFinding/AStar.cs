@@ -128,7 +128,7 @@ namespace PathFinding
                     int checkX = node.GridCoordX + x;
                     int checkY = node.GridCoordY + y;
 
-                    if (checkX >= 0 && checkX < grid.gridSizeX && checkY >= 0 && checkY < grid.gridSizeY)
+                    if (checkX >= 0 && checkX < grid.gridSize && checkY >= 0 && checkY < grid.gridSize)
                         neighbours.Add(grid.nodes[checkY, checkX]);
                 }
             }

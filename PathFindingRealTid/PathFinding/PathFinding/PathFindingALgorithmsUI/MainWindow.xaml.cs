@@ -50,6 +50,7 @@ namespace PathFindingALgorithmsUI
             size = GridSizeInput.Text;
             speed = SimulationSpeedInput.Text;
             selected = Algorithms.ASTAR;
+            ChoiceSelected();
             Close();
         }
 
@@ -58,6 +59,7 @@ namespace PathFindingALgorithmsUI
             size = GridSizeInput.Text;
             speed = SimulationSpeedInput.Text;
             selected = Algorithms.DIJKSTRA;
+            ChoiceSelected();
             Close();
         }
 
@@ -66,6 +68,7 @@ namespace PathFindingALgorithmsUI
             size = GridSizeInput.Text;
             speed = SimulationSpeedInput.Text;
             selected = Algorithms.BFS;
+            ChoiceSelected();
             Close();
         }
 
@@ -74,10 +77,11 @@ namespace PathFindingALgorithmsUI
             size = GridSizeInput.Text;
             speed = SimulationSpeedInput.Text;
             selected = Algorithms.DFS;
+            ChoiceSelected();
             Close();
         }
 
-        private void ChoiceSelected(object sender, EventArgs args)
+        private void ChoiceSelected()
         {
             if (OnChoiceSelected != null)
                 OnChoiceSelected(this, new NewSimPropertiesEventArgs(size, speed, selected));

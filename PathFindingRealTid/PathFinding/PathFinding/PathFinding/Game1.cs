@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using PathFindingALgorithmsUI;
 
+
 namespace PathFinding
 {
     public enum GameState { WAITING, SETUP, RUN, EXAMINE, REVERT }
@@ -31,9 +32,12 @@ namespace PathFinding
 
         protected override void Initialize()
         {
+            System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(this);
+
             ui = new MainWindow();
             ui.InitializeComponent();
-            ui.Show();
+            ui.Show();            
+
             gameState = GameState.WAITING;
             graphics.PreferredBackBufferWidth = screenSizeX;
             graphics.PreferredBackBufferHeight = screenSizeY;
@@ -49,8 +53,9 @@ namespace PathFinding
             spriteBatch = new SpriteBatch(GraphicsDevice);
             recTex = Content.Load<Texture2D>("25x25Rec");
             text = Content.Load<SpriteFont>("text");
-            grid = new Grid(recTex, (screenSizeX / recTex.Width), (screenSizeY / recTex.Height), gameState, text);
-           
+            ui.OnChoiceSelected += OnUserSetup;
+            // grid = new Grid(recTex, (screenSizeX / recTex.Width), (screenSizeY / recTex.Height), gameState, text);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -62,7 +67,7 @@ namespace PathFinding
             switch (gameState)
             {
                 case GameState.WAITING:
-                    ui.OnChoiceSelected += OnUserSetup;
+                   
                     break;
                 case GameState.SETUP:
                     grid.gameState = GameState.SETUP;
@@ -143,7 +148,23 @@ namespace PathFinding
 
         private void OnUserSetup(object sender, NewSimPropertiesEventArgs args)
         {
-            
+            try
+            {
+                var gridSize = Int32.Parse(args.size);
+                var simSpeed = Int32.Parse(args.speed);
+                var algorithmSelected = args.selected;
+                SetupGrid(gridSize, simSpeed, algorithmSelected);
+            }
+         catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void SetupGrid(int _gridSize, int _simSpeed, Algorithms _selected)
+        {
+            gameState = GameState.SETUP;
+            grid = new Grid(recTex, _gridSize, gameState, text, _simSpeed, _selected);
         }
     }
 }
