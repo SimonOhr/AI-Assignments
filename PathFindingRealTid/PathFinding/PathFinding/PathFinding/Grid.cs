@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace PathFinding
 {
-    public enum PathFindingSelector { NOTHING, ASTAR, DIJKRSTRAS, BREADTHFIRST, DEPTHFIRST }    
+    public enum PathFindingSelector { NOTHING, ASTAR, DIJKRSTRAS, BREADTHFIRST, DEPTHFIRST }
 
     internal class Grid
     {
         private Texture2D tex;
         private readonly SpriteFont text;
         public Node[,] nodes;
-        private MouseState mouseInput, oldMOuseInput;
+        private MouseState mouseInput, oldMouseInput;
         private KeyboardState keyInput, oldKeyInput;
         public GameState gameState { get; set; }
 
@@ -52,6 +52,7 @@ namespace PathFinding
             nodes = new Node[_gridSize, _gridSize];
             this.gameState = gameState;
             simSpeed = _simSpeed;
+            selectedAlgorithm = _selected;
             currentSetupState = SetupStateSequence.SETUPSTART;
             ConstructGrid();
             aStar = new AStar(this);
@@ -101,7 +102,7 @@ namespace PathFinding
 
         public void Update(GameTime gameTime)
         {
-            oldMOuseInput = mouseInput;
+            oldMouseInput = mouseInput;
             mouseInput = Mouse.GetState();
 
             for (int i = 0; i < nodes.GetLength(0); i++)
@@ -119,7 +120,10 @@ namespace PathFinding
             {
                 case GameState.SETUP:
                     if (RunSetupStateSequence(node))
+                    {
                         isSetUpComplete = true;
+                        gameState = GameState.RUN;
+                    }
                     break;
                 case GameState.RUN:
                     if (IsSearching)
@@ -127,13 +131,11 @@ namespace PathFinding
                         Game1.sw.Start();
 
                         if (startNode == null)
-                        {
                             startNode = FindStartNode();
-                        }
+
                         if (targetNode == null)
-                        {
                             targetNode = FindTargetNode();
-                        }
+
                         DoAlgorithm(selectedAlgorithm, gameTime);
                     }
                     break;
@@ -154,9 +156,9 @@ namespace PathFinding
             {
                 case SetupStateSequence.SELECTPATHALGORITHM:
                     if (chosenPathFindingAlgorithm == 0)
-                     //  chosenPathFindingAlgorithm = AlgorithmSelecter();
-                    if (chosenPathFindingAlgorithm != 0)
-                        currentSetupState = SetupStateSequence.SETUPSTART;
+                        //  chosenPathFindingAlgorithm = AlgorithmSelecter();
+                        if (chosenPathFindingAlgorithm != 0)
+                            currentSetupState = SetupStateSequence.SETUPSTART;
                     break;
                 case SetupStateSequence.SETUPSTART:
                     if (!SetUpNodes(Color.Green, node))
@@ -276,27 +278,28 @@ namespace PathFinding
 
         private bool SetUpNodes(Color switchToColor, Node node)
         {
-           // if (mouseInput.LeftButton == ButtonState.Pressed)           
-           // {
-                if (node.Hitbox.Contains(mouseInput.Position) && node.Color != Color.Green && node.Color != Color.Red)
+            if (node.Hitbox.Contains(mouseInput.Position) &&                
+                mouseInput.LeftButton == ButtonState.Pressed &&
+                oldMouseInput.LeftButton == ButtonState.Released)
+            {
+                if (node.Color != Color.Green &&
+                node.Color != Color.Red)
                     node.Color = switchToColor;
+            }
 
-            //}
-            //if (mouseInput.RightButton == ButtonState.Pressed)
-          //  {
-                if (node.Hitbox.Contains(mouseInput.Position) && node.Color == switchToColor)
-                {
+            if (mouseInput.RightButton == ButtonState.Pressed &&
+                node.Hitbox.Contains(mouseInput.Position) &&
+                node.Color == switchToColor)
+            {
+                node.Color = Color.White;
+            }
 
-
-                    node.Color = Color.White;
-                }
-         //   }
             if (node.Color == Color.Black)
                 node.SetWalkable(false);
             if (node.Color != Color.Black)
                 node.SetWalkable(true);
 
-            if (keyInput.IsKeyDown(Keys.Space) && oldKeyInput.IsKeyUp(Keys.Space))
+            if (keyInput.IsKeyDown(Keys.Enter) && oldKeyInput.IsKeyUp(Keys.Enter))
                 return false;
             return true;
         }

@@ -27,8 +27,9 @@ namespace PathFindingALgorithmsUI
         string size, speed;       
         Algorithms selected;
         public MainWindow()
-        {
+        {          
             InitializeComponent();
+            System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(this);
         }
 
         private void SimulationSpeedInput_GotFocus(object sender, RoutedEventArgs e)

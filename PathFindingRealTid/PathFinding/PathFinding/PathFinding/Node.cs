@@ -46,7 +46,7 @@ namespace PathFinding
             GridCoordX = (int)pos.X / tex.Width;
             GridCoordY = (int)pos.Y / tex.Height;
             Weight = 1;
-            Distance = int.MaxValue;
+            Distance = 99;
             AdjList = new List<Node>();
         }
 

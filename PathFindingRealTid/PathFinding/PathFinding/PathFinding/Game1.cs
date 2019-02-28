@@ -24,6 +24,8 @@ namespace PathFinding
 
         MainWindow ui;
 
+        System.Windows.Forms.Form frm;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,8 +34,8 @@ namespace PathFinding
 
         protected override void Initialize()
         {
-            System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(this);
-
+            frm = (System.Windows.Forms.Form)System.Windows.Forms.Form.FromHandle(Window.Handle);
+            frm.Hide();
             ui = new MainWindow();
             ui.InitializeComponent();
             ui.Show();            
