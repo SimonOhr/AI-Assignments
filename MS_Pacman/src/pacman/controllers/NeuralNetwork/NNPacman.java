@@ -42,7 +42,7 @@ public final class NNPacman extends Controller<Constants.MOVE>
             generationManager = new GenerationManager();
         } catch (IOException e)
         {
-            System.err.print("Something went wanky");
+            System.err.print("Generation manager could not be initialized");
         }
 
         networkInitialized = false;
@@ -170,7 +170,7 @@ public final class NNPacman extends Controller<Constants.MOVE>
             generationManager.setFitnessAfterGame(fitness);
         } catch (IOException e)
         {
-            System.err.print("Something went wanky");
+            System.err.print("Could not set fitness");
         }
     }
 
@@ -181,7 +181,7 @@ public final class NNPacman extends Controller<Constants.MOVE>
             generationManager.resetGenerationTracker();
         } catch (IOException e)
         {
-            System.err.print("Something went wanky");
+            System.err.print("Could not reset generation tracker");
         }
     }
 
@@ -192,7 +192,7 @@ public final class NNPacman extends Controller<Constants.MOVE>
             generationManager.resetBreedLog();
         } catch (IOException e)
         {
-            System.err.print("Something went wanky");
+            System.err.print("Could not reset breed log");
         }
     }
 }

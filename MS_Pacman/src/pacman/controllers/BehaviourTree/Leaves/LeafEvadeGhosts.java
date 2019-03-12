@@ -10,7 +10,10 @@ public class LeafEvadeGhosts extends BTNode {
     @Override
     public NODESTATUS UpdateNodeStatus() {
         //BTPacman.myMove = BTPacman.game.getNextMoveAwayFromTarget(BehaviourTree.pacmanPos, BehaviourTree.closestGhostPos, Constants.DM.PATH);
-        BTPacman.myMove = BTPacman.game.getNextMoveTowardsTarget(BehaviourTree.pacmanPos, BehaviourTree.closestGhostPos, Constants.DM.PATH).opposite();
+        //BTPacman.myMove = BTPacman.game.getNextMoveTowardsTarget(BehaviourTree.pacmanPos, BehaviourTree.closestGhostPos, Constants.DM.PATH).opposite();
+
+        BTPacman.myMove=BTPacman.game.getNextMoveAwayFromTarget(BehaviourTree.pacmanPos, BehaviourTree.closestGhostPos, Constants.DM.PATH);
+
         System.out.print("\n Pacmans position: " + BehaviourTree.pacmanPos + "\t Closest ghost position: " + BehaviourTree.closestGhostPos + "\n");
         System.out.print(" Pacman moves " + BTPacman.myMove.toString());
         currentStatus = (BTPacman.myMove != null) ? NODESTATUS.SUCCESS : NODESTATUS.FAILURE;

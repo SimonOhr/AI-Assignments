@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
+import pacman.controllers.BehaviourTree.BTPacman;
 import pacman.controllers.NeuralNetwork.GenerationManager;
 import pacman.controllers.NeuralNetwork.NNPacman;
 import pacman.controllers.Controller;
@@ -40,9 +41,9 @@ public class Executor
         Executor exec = new Executor();
 
         //run multiple games in batch mode - good for testing.
-        int numTrials = GenerationManager.generationSize * GenerationManager.totalGenerations;
-        System.out.println("\nNumber of trials: " + numTrials + "\n");
-        exec.runExperiment(new NNPacman(), new AggressiveGhosts(), numTrials);
+        //int numTrials = GenerationManager.generationSize * GenerationManager.totalGenerations;
+        //System.out.println("\nNumber of trials: " + numTrials + "\n");
+        //exec.runExperiment(new NNPacman(), new AggressiveGhosts(), numTrials);
 		 
 		
 		/*
@@ -58,7 +59,7 @@ public class Executor
 //		exec.runGameTimed(new NearestPillPacMan(),new AggressiveGhosts(),visual);
 //		exec.runGameTimed(new StarterPacMan(),new StarterGhosts(),visual);
 //		exec.runGameTimed(new HumanController(new KeyBoardInput()),new StarterGhosts(),visual);
-        //exec.runGameTimed(new NNPacman(), new StarterGhosts(), visual);
+        exec.runGameTimed(new BTPacman(), new StarterGhosts(), visual);
         //*/
 		
 		/*
