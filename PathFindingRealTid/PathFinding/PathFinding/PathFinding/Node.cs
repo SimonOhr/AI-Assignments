@@ -29,6 +29,7 @@ namespace PathFinding
             get { return GCost + HCost; }
         }
         public bool Visited { get; set; }
+        public bool Visit { get; set; }
         public bool Start { get; set; }
         public bool Target { get; set; }
         public List<Node> AdjList { get; set; }
@@ -46,14 +47,14 @@ namespace PathFinding
             GridCoordX = (int)pos.X / tex.Width;
             GridCoordY = (int)pos.Y / tex.Height;
             Weight = 1;
-            Distance = 99;
+            Distance = int.MaxValue;
             AdjList = new List<Node>();
         }
 
         public void Draw(SpriteBatch sb)
         {
             sb.Draw(tex, pos, Color);
-            sb.DrawString(text, $"{Distance}", new Vector2(pos.X + 9, pos.Y + 9), Color.Black);
+            sb.DrawString(text, $"{Weight}", new Vector2(pos.X + 9, pos.Y + 9), Color.Black);
         }
 
         public void SetWalkable(bool _isWalkable)

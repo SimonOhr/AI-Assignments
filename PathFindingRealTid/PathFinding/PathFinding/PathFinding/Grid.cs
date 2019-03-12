@@ -51,7 +51,7 @@ namespace PathFinding
             text = _text;
             nodes = new Node[_gridSize, _gridSize];
             this.gameState = gameState;
-            simSpeed = _simSpeed;
+            simSpeed /= _simSpeed;
             selectedAlgorithm = _selected;
             currentSetupState = SetupStateSequence.SETUPSTART;
             ConstructGrid();
@@ -155,8 +155,7 @@ namespace PathFinding
             switch (currentSetupState)
             {
                 case SetupStateSequence.SELECTPATHALGORITHM:
-                    if (chosenPathFindingAlgorithm == 0)
-                        //  chosenPathFindingAlgorithm = AlgorithmSelecter();
+                    if (chosenPathFindingAlgorithm == 0)                       
                         if (chosenPathFindingAlgorithm != 0)
                             currentSetupState = SetupStateSequence.SETUPSTART;
                     break;
@@ -180,24 +179,7 @@ namespace PathFinding
                     break;
             }
             return false;
-        }
-
-        //private PathFindingSelector AlgorithmSelecter()
-        //{
-        //    if (keyInput.IsKeyDown(Keys.D1))
-        //        return chosenPathFindingAlgorithm = PathFindingSelector.ASTAR;
-
-        //    if (keyInput.IsKeyDown(Keys.D2))
-        //        return chosenPathFindingAlgorithm = PathFindingSelector.DIJKRSTRAS;
-
-        //    if (keyInput.IsKeyDown(Keys.D3))
-        //        return chosenPathFindingAlgorithm = PathFindingSelector.BREADTHFIRST;
-
-        //    if (keyInput.IsKeyDown(Keys.D4))
-        //        return chosenPathFindingAlgorithm = PathFindingSelector.DEPTHFIRST;
-
-        //    return 0;
-        //}
+        }               
 
         private void DoAlgorithm(Algorithms chosenAlgorithm, GameTime gameTime)
         {
@@ -223,29 +205,7 @@ namespace PathFinding
                 }
 
                 timer = reset;
-            }
-            //timer += gameTime.ElapsedGameTime.TotalMilliseconds;
-            //if (timer > simSpeed)
-            //{
-            //    switch (chosenPathFindingAlgorithm)
-            //    {
-            //        case PathFindingSelector.ASTAR:
-            //            aStar.FindPath(startNode, targetNode);
-            //            break;
-            //        case PathFindingSelector.DIJKRSTRAS:
-            //            dijkstra.FindPath(startNode, targetNode);
-            //            break;
-            //        case PathFindingSelector.BREADTHFIRST:
-            //            bfs.FindPath(startNode, targetNode);
-            //            break;
-            //        case PathFindingSelector.DEPTHFIRST:
-            //            dfs.RunDFS(startNode, targetNode);
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //    timer = reset;
-            //}
+            }           
         }
 
         private Node FindStartNode()
@@ -279,8 +239,7 @@ namespace PathFinding
         private bool SetUpNodes(Color switchToColor, Node node)
         {
             if (node.Hitbox.Contains(mouseInput.Position) &&                
-                mouseInput.LeftButton == ButtonState.Pressed &&
-                oldMouseInput.LeftButton == ButtonState.Released)
+                mouseInput.LeftButton == ButtonState.Pressed)
             {
                 if (node.Color != Color.Green &&
                 node.Color != Color.Red)

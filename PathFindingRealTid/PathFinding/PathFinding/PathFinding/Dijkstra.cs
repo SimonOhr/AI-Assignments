@@ -20,32 +20,34 @@ namespace PathFinding
         {
             grid = _grid;
             visit = new Heap<Node>(_grid.MaxSize);
-            heap = new Heap<Node>(_grid.MaxSize);           
+            heap = new Heap<Node>(_grid.MaxSize);
         }
 
         private void Reset()
         {
             startNode.Distance = 0;
             startNode.Weight = 0;
-           
+
             visited = new Queue<Node>();
             path = new List<Node>();
         }
 
         public List<Node> FindPath(Node _startNode, Node _targetNode)
-        {          
+        {
             if (targetNode == null)
             {
-                foreach (Node item in grid.nodes)
-                {
-                    item.Distance = int.MaxValue;
-                    item.Previous = null;
-                    heap.Add(item);
-                }
+                //foreach (Node item in grid.nodes)
+                //{
+                //    item.Distance = int.MaxValue;
+                //    item.Previous = null;
+                //    heap.Add(item);
+                //}
                 targetNode = _targetNode;
                 //Reset();
                 //heap.Add(_startNode);
-            }           
+            }
+            
+            heap.Add(_startNode);
 
             if (heap.Count != 0 && heap.GetCurrent() != null)
             {
@@ -77,7 +79,7 @@ namespace PathFinding
             foreach (Node n in visited)
                 n.Color = Color.Purple;
 
-            for (int i = 0; i < visit.GetCollection().Length; i++)           
+            for (int i = 0; i < visit.GetCollection().Length; i++)
             {
                 if (visit.GetCollection()[i] == null)
                     break;
@@ -87,25 +89,20 @@ namespace PathFinding
             return null;
         }
 
-        //public List<Node> GetNeighbours(Node node)
+        //private void EvaluateNeighbors(Node currentNode, Heap<Node> visit, Queue<Node> visited)
         //{
-        //    List<Node> neighbours = new List<Node>();
-
-        //    for (int x = -1; x <= 1; x++)
+        //    foreach (Node neighbour in currentNode.AdjList)
         //    {
-        //        for (int y = -1; y <= 1; y++)
+        //        int distance = currentNode.Weight + neighbour.Weight;
+
+        //        if (distance < neighbour.Distance && neighbour.IsWalkable && !neighbour.Visited)
         //        {
-        //            if (x == 0 && y == 0)
-        //                continue;
-
-        //            int checkX = node.GridCoordX + x;
-        //            int checkY = node.GridCoordY + y;
-
-        //            if (checkX >= 0 && checkX < grid.gridSizeX && checkY >= 0 && checkY < grid.gridSizeY)
-        //                neighbours.Add(grid.nodes[checkY, checkX]);
-        //        }
+        //            neighbour.Distance = distance;
+        //            neighbour.Weight = distance;
+        //            neighbour.Previous = currentNode;
+        //            heap.Add(neighbour);
+        //        }                
         //    }
-        //    return neighbours;
         //}
 
         private void EvaluateNeighbors(Node currentNode, Heap<Node> visit, Queue<Node> visited)
@@ -114,12 +111,12 @@ namespace PathFinding
             {
                 int distance = currentNode.Weight + neighbour.Weight;
 
-                if (distance < neighbour.Distance && neighbour.IsWalkable && !neighbour.Visited)
+                if (neighbour.IsWalkable && !heap.Contains(neighbour))
                 {
-                    neighbour.Distance = distance;
-                    neighbour.Weight = distance;
+                    neighbour.Distance = distance;                    
                     neighbour.Previous = currentNode;
                     heap.Add(neighbour);
+                    heap.UpdateItem(neighbour);
                 }
             }
         }

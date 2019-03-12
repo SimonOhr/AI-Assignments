@@ -16,7 +16,7 @@ namespace PathFinding
         private Texture2D recTex;
         private SpriteFont text;
         private Grid grid;
-        private const int screenSizeX = 800, screenSizeY = 600;
+        private const int screenSizeX = 800, screenSizeY = 800;
         private GameState gameState;
         private KeyboardState keyInput, oldKeyInput;
 
@@ -38,14 +38,10 @@ namespace PathFinding
             frm.Hide();
             ui = new MainWindow();
             ui.InitializeComponent();
-            ui.Show();            
-
+            ui.Show();
+           
             gameState = GameState.WAITING;
-            graphics.PreferredBackBufferWidth = screenSizeX;
-            graphics.PreferredBackBufferHeight = screenSizeY;
-            graphics.ApplyChanges();
             IsMouseVisible = true;
-
             base.Initialize();
         }
 
@@ -56,6 +52,7 @@ namespace PathFinding
             recTex = Content.Load<Texture2D>("25x25Rec");
             text = Content.Load<SpriteFont>("text");
             ui.OnChoiceSelected += OnUserSetup;
+            setNewScreenWidth(0);
             // grid = new Grid(recTex, (screenSizeX / recTex.Width), (screenSizeY / recTex.Height), gameState, text);
 
         }
@@ -69,7 +66,7 @@ namespace PathFinding
             switch (gameState)
             {
                 case GameState.WAITING:
-                   
+
                     break;
                 case GameState.SETUP:
                     grid.gameState = GameState.SETUP;
@@ -85,8 +82,7 @@ namespace PathFinding
                     grid.Update(gameTime);
                     gameState = GameState.EXAMINE;
                     break;
-                case GameState.EXAMINE:
-                    Console.WriteLine("testing testing");
+                case GameState.EXAMINE:                   
                     grid.Update(gameTime);
                     if (keyInput.IsKeyDown(Keys.Enter) && oldKeyInput.IsKeyUp(Keys.Enter))
                         gameState = GameState.REVERT;
@@ -157,7 +153,7 @@ namespace PathFinding
                 var algorithmSelected = args.selected;
                 SetupGrid(gridSize, simSpeed, algorithmSelected);
             }
-         catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -167,6 +163,13 @@ namespace PathFinding
         {
             gameState = GameState.SETUP;
             grid = new Grid(recTex, _gridSize, gameState, text, _simSpeed, _selected);
+            setNewScreenWidth(_gridSize);
+        }
+        void setNewScreenWidth(int size)
+        {
+            graphics.PreferredBackBufferWidth = size * recTex.Width;
+            graphics.PreferredBackBufferHeight = size * recTex.Height;
+            graphics.ApplyChanges();
         }
     }
 }
