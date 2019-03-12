@@ -4,7 +4,8 @@ import java.io.*;
 
 public class FileManager
 {
-    String folderPath = "C:\\MAU\\AI\\MS_Pacman\\Generations\\";
+    String folderPath = "C:\\Users\\vikto\\OneDrive\\År3\\Spelinriktad AI\\AI-Assignments\\MS_Pacman\\Generations\\";
+    //"C:\\MAU\\AI\\MS_Pacman\\Generations\\"
 
     public File getCurrentFilePath(int genID)
     {
