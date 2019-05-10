@@ -9,52 +9,24 @@ namespace PathFinding
 {
     class Dijkstra
     {
-        private Grid grid;
-        private Node startNode, targetNode;
-        private Heap<Node> visit;
-        private Queue<Node> visited = new Queue<Node>();
-        private List<Node> path = new List<Node>();
-        private Heap<Node> heap;
-        Node currentNode;
+        Grid grid;
         public Dijkstra(Grid _grid)
         {
             grid = _grid;
-            visit = new Heap<Node>(_grid.MaxSize);
-            heap = new Heap<Node>(_grid.MaxSize);
         }
-
-        private void Reset()
+        public List<Node> FindPath(Node startNode, Node targetNode)
         {
+            Queue<Node> visit = new Queue<Node>();
+
+            Queue<Node> visited = new Queue<Node>();
+            List<Node> path = new List<Node>();
             startNode.Distance = 0;
             startNode.Weight = 0;
-
-            visited = new Queue<Node>();
-            path = new List<Node>();
-        }
-
-        public List<Node> FindPath(Node _startNode, Node _targetNode)
-        {
-            if (targetNode == null)
+            visit.Enqueue(startNode);
+            while (visit.Count != 0)
             {
-                //foreach (Node item in grid.nodes)
-                //{
-                //    item.Distance = int.MaxValue;
-                //    item.Previous = null;
-                //    heap.Add(item);
-                //}
-                targetNode = _targetNode;
-                //Reset();
-                //heap.Add(_startNode);
-            }
-            
-            heap.Add(_startNode);
-
-            if (heap.Count != 0 && heap.GetCurrent() != null)
-            {
-                currentNode = heap.RemoveFirst();
-                
-                EvaluateNeighbors(currentNode, heap, visited);
-
+                Node currentNode = visit.Dequeue();            
+                EvaluateNeighbors(currentNode, visit, visited);
                 if (currentNode == targetNode)
                 {
                     path.Add(currentNode);
@@ -64,61 +36,40 @@ namespace PathFinding
                         path.Add(currentNode);
                     }
                     path.Add(startNode);
-
+                    foreach (Node n in visited)
+                    {
+                        n.Color = Color.Purple;
+                    }
+                    foreach (Node n in visit)
+                    {
+                        n.Color = Color.Violet;
+                    }
                     foreach (Node n in path)
+                    {
                         n.Color = Color.Blue;
-
+                    }
                     path.Reverse();
-                    grid.IsSearching = false;
-                    Reset();
-
                     return path;
-                }
+                }         
                 visited.Enqueue(currentNode);
             }
-            foreach (Node n in visited)
-                n.Color = Color.Purple;
-
-            for (int i = 0; i < visit.GetCollection().Length; i++)
-            {
-                if (visit.GetCollection()[i] == null)
-                    break;
-                visit.GetCollection()[i].Color = Color.Violet;
-            }
-            Console.WriteLine("heap count: " + visit.Count);
             return null;
-        }
+        }   
 
-        //private void EvaluateNeighbors(Node currentNode, Heap<Node> visit, Queue<Node> visited)
-        //{
-        //    foreach (Node neighbour in currentNode.AdjList)
-        //    {
-        //        int distance = currentNode.Weight + neighbour.Weight;
-
-        //        if (distance < neighbour.Distance && neighbour.IsWalkable && !neighbour.Visited)
-        //        {
-        //            neighbour.Distance = distance;
-        //            neighbour.Weight = distance;
-        //            neighbour.Previous = currentNode;
-        //            heap.Add(neighbour);
-        //        }                
-        //    }
-        //}
-
-        private void EvaluateNeighbors(Node currentNode, Heap<Node> visit, Queue<Node> visited)
+        private void EvaluateNeighbors(Node currentNode, Queue<Node> visit, Queue<Node> visited)
         {
             foreach (Node neighbour in currentNode.AdjList)
-            {
+            {                           
                 int distance = currentNode.Weight + neighbour.Weight;
-
-                if (neighbour.IsWalkable && !heap.Contains(neighbour))
+                if (distance < neighbour.Distance && neighbour.Color != Color.Black)
                 {
-                    neighbour.Distance = distance;                    
+                    neighbour.Distance = distance;
+                    neighbour.Weight = distance;
                     neighbour.Previous = currentNode;
-                    heap.Add(neighbour);
-                    heap.UpdateItem(neighbour);
-                }
-            }
+                    visit.Enqueue(neighbour);
+                }           
+            }          
         }
     }
 }
+

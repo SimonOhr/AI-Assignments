@@ -4,7 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/AI-Assignments/PathFindingRealTid/PathFinding/PathFinding/PathFinding/Content/25x25Rec.png</File>
-    <File>E:/AI-Assignments/PathFindingRealTid/PathFinding/PathFinding/PathFinding/Content/text.spritefont</File>
+    <File>C:/Users/Spellabb2018/Documents/GitHub/AI-Assignments/PathFindingRealTid/PathFinding/PathFinding/PathFinding/Content/25x25Rec.png</File>
+    <File>C:/Users/Spellabb2018/Documents/GitHub/AI-Assignments/PathFindingRealTid/PathFinding/PathFinding/PathFinding/Content/text.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

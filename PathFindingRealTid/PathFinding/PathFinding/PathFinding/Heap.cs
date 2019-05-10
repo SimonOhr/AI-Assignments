@@ -10,6 +10,7 @@ namespace PathFinding
     {
         T[] items;
         int currentItemCount;
+        public bool UseDistance { get;set; }
         public Heap(int maxHeapSize)
         {
             items = new T[maxHeapSize];
@@ -50,7 +51,7 @@ namespace PathFinding
 
         public T GetCurrent()
         {
-            return items[currentItemCount-1];
+            return items[currentItemCount - 1];
         }
 
         public T[] GetCollection()
@@ -66,17 +67,17 @@ namespace PathFinding
                 int childIndexRight = item.HeapIndex * 2 + 2;
                 int swapIndex = 0;
 
-                if(childIndexLeft < currentItemCount)
+                if (childIndexLeft < currentItemCount)
                 {
                     swapIndex = childIndexLeft;
-                    if(childIndexRight < currentItemCount)
+                    if (childIndexRight < currentItemCount)
                     {
                         if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0)
                         {
                             swapIndex = childIndexRight;
                         }
                     }
-                    if(item.CompareTo(items[swapIndex]) < 0)
+                    if (item.CompareTo(items[swapIndex]) < 0)
                     {
                         Swap(item, items[swapIndex]);
                     }
@@ -88,17 +89,26 @@ namespace PathFinding
                 else
                 {
                     return;
-                }               
+                }
             }
         }
-        
+
         void SortUp(T item)
         {
-            int parentIndex = (item.HeapIndex - 1) / 2;           
+            int parentIndex = (item.HeapIndex - 1) / 2;
             while (true)
             {
                 T parentItem = items[parentIndex];
-                if(item.CompareTo(parentItem) > 0)
+                Node nodeparent = (parentItem as Node);
+                Node nodeItem = (item as Node);
+                if (nodeItem.Distance < nodeparent.Distance && UseDistance)
+                {                    
+                    if (nodeItem.Distance < nodeparent.Distance)
+                    {
+                        Swap(item, parentItem);
+                    }
+                }
+                else if (item.CompareTo(parentItem) > 0)
                 {
                     Swap(item, parentItem);
                 }
